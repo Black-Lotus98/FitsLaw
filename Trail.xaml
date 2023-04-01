@@ -1,0 +1,170 @@
+﻿<Page x:Class="FitsLaw.Trail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FitsLaw"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Trail">
+
+    <Page.Resources>
+        <Style x:Key="CircularButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse x:Name="ellipse" Fill="Green" Height="50" Width="50" VerticalAlignment="Top" />
+
+                            <ContentPresenter  />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SquareButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle Fill="Orange" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width" Value="35" />
+            <Setter Property="Height" Value="35" />
+        </Style>
+
+    </Page.Resources>
+
+
+    <Border CornerRadius="30">
+        <Border.Background>
+            <ImageBrush ImageSource="/Resources/background.jpg" />
+        </Border.Background>
+        <Border CornerRadius="25" 
+                BorderThickness="5"
+                Opacity=".90">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#40352C" Offset="0"></GradientStop>
+                    <GradientStop Color="#F2CEAE" Offset="0.75"></GradientStop>
+                    <GradientStop Color="#40352C" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#F2CEAE" Offset="0.25"></GradientStop>
+                    <GradientStop Color="#40352C" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#F2CEAE" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#F2E7DC" Offset="0.75"></GradientStop>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+
+
+
+
+            <Grid MouseDown="Grid_MouseDown" Background="Transparent">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="70"/>
+
+
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="15"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Fits Law"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        FontFamily="Montserrat"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0"/>
+                        <Button x:Name="btnMinimize"
+                    Background="DarkKhaki"
+                    BorderThickness="0"
+                    Content="-"
+                    Foreground="White"
+                    FontSize="16"
+                        FontWeight="Bold"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="1"
+                    Click="btnMinimize_Click" >
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="DarkKhaki"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DarkKhaki"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="20" Height="20" 
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnClose"
+                    BorderThickness="0"
+                    Content="x"
+                    Foreground="White"
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="2"
+                    Click="btnClose_Click" >
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="DarkRed"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DarkRed"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="20" Height="20" 
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <Button x:Name="squareBtn" Content="" Style="{StaticResource SquareButtonStyle}" Click="SquarBtn" />
+                <Button x:Name="circleBtn" Content="" Style="{StaticResource CircularButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"  Click="CircleBtn" Margin="100,0,0,0"  RenderTransformOrigin="6.344,4.025"  />
+                <TextBlock x:Name="ParticipantName" HorizontalAlignment="Center" Height="44" Margin="0,48,0,0" TextWrapping="Wrap" Text="Task" VerticalAlignment="Top" Width="454" TextAlignment="Center" />
+                <TextBlock x:Name="resultsBox" HorizontalAlignment="Center" Height="44" Margin="0,100,0,0" TextWrapping="Wrap" Text="Task" VerticalAlignment="Top" Width="454" TextAlignment="Center" />
+            </Grid>
+        </Border>
+    </Border>
+</Page>
